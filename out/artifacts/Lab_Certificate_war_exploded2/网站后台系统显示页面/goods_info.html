@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>管理界面</title>
+<link href="../css/houtai.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="page">
+<h2>商品信息表格</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  		<table border="1" width="500" height="50" align="center" id="tbl" >
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>名称</th>
+					<th>价格</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr >
+					<td>1</td>
+					<td>立体动物杯</td>
+					<td>39</td>
+				</tr>
+				<tr >
+					<td>2</td>
+					<td>挂耳咖啡</td>
+					<td>45</td>
+				</tr>
+				<tr >
+					<td>3</td>
+					<td>音乐盒</td>
+					<td>35</td>
+				</tr>
+				<tr >
+					<td>4</td>
+					<td>猫碗</td>
+					<td>69</td>
+				</tr>
+				<tr >
+					<td>5</td>
+					<td>收纳盒</td>
+					<td>25</td>
+				</tr>
+				<tr >
+					<td>6</td>
+					<td>云钥匙贴</td>
+					<td>15</td>
+				</tr>
+			</tbody>
+		</table>
+</table>
+</body>
+		<script>
+			window.onload = function(){
+				//1.获取表格
+				var tblEle = document.getElementById("tbl");
+				//2.获取表格中tbody里面的行数(长度)
+				var len = tblEle.tBodies[0].rows.length;
+				//alert(len);
+				//3.对tbody里面的行进行遍历
+				for(var i=0;i<len;i++){
+					if(i%2==0){
+						//4.对偶数行设置背景颜色
+						tblEle.tBodies[0].rows[i].style.backgroundColor = "aliceblue";
+					}else{
+						//5.对奇数行设置背景颜色
+						tblEle.tBodies[0].rows[i].style.backgroundColor= "blanchedalmond";
+					}
+				}
+			}
+		</script>
+</html>

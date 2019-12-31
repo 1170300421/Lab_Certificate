@@ -1,0 +1,212 @@
+目前数字证书，作为一种比较成熟的安全产品，数字证书已经发展到一个较高的技术水平，而且它将在我们将来的网络生活中发挥越来越重要的作用。通俗地讲，数字证书就是个人或单位在 Internet上的身份证。比较专业的数字证书定义是，数字证书是一个经证书授权中心数字签名的包含公开密钥拥有者信息以及公开密钥的文件。最简单的证书包含一个公开密钥、名称以及证书授权中心的数字签名。一般情况下证书中还包括密钥的有效时间，发证机关（证书授权中心）的名称，该证书的序列号等信息，证书的格式遵循相关国际标准。有了数字证书，我们在网络上就可以畅通无阻。数字证书需要十分可靠的安全保密技术，也就是说，必须保证网络安全的四大要素，即信息传输的保密性、数据交换的完整性、发送信息的不可否认性、交易者身份的确定性。
+   可见ca技术在电子商务的领域应用的越来越普遍，大部分的商家和企业选择的都是因为它的安全性，可是，我国的数字证书尚在起步阶段，很多企业只是在这一领域里进行尝试，而且也难怪显出各司其职的鱼龙混杂的现象，所以进一步完善我们的数字证书领域是非常迫切的，而且，我们国家也需要这方面的人才
+目前，我国的若认证机构分布在天津、北京、上海、广州
+
+湖南、湖北、山西等地
+证书是由认证机构颁发的，使用者需要对证书进行验证，因此如果证书的格式千奇百怪那就不方便了。于是，人们制定了证书的标准规范，其中使用最广泛的是由ITU（International TelecommumcationUnion，国际电信联盟）和ISO（IntemationalOrganizationforStandardization, 国际标准化组织）制定的X.509规范。很多应用程序都支持x.509并将其作为证书生成和交换的标准规范。
+
+X.509是一种非常通用的证书格式。所有的证书都符合ITU-T X.509国际标准，因此(理论上)为一种应用创建的证书可以用于任何其他符合X.509标准的应用。X.509证书的结构是用ASN1(Abstract Syntax Notation One)进行描述数据结构，并使用ASN.1语法进行编码。
+
+在一份证书中，必须证明公钥及其所有者的姓名是一致的。对X.509证书来说，认证者总是CA或由CA指定的人，一份X.509证书是一些标准字段的集合，这些字段包含有关用户或设备及其相应公钥的信息。X.509标准定义了证书中应该包含哪些信息，并描述了这些信息是如何编码的(即数据格式)
+
+一般来说，一个数字证书内容可能包括基本数据（版本、序列号) 、所签名对象信息（ 签名算法类型、签发者信息、有效期、被签发人、签发的公开密钥）、CA的数字签名，等等。
+前使用最广泛的标准为ITU和ISO联合制定的X.509的 v3版本规范 (RFC5280）, 其中定义了如下证书信息域：
+
+版本号(Version Number）：规范的版本号，目前为版本3，值为0x2；
+
+序列号（Serial Number）：由CA维护的为它所发的每个证书分配的一的列号，用来追踪和撤销证书。只要拥有签发者信息和序列号，就可以唯一标识一个证书，最大不能过20个字节；
+
+签名算法（Signature Algorithm）：数字签名所采用的算法，如：
+
+sha256-with-RSA-Encryption
+ccdsa-with-SHA2S6；
+颁发者（Issuer）：发证书单位的标识信息，如 ” C=CN，ST=Beijing, L=Beijing, O=org.example.com，CN=ca.org。example.com ”；
+
+有效期(Validity): 证书的有效期很，包括起止时间。
+
+主体(Subject) : 证书拥有者的标识信息（Distinguished Name），如：" C=CN，ST=Beijing, L=Beijing, CN=person.org.example.com”；
+
+主体的公钥信息(SubJect Public Key Info）：所保护的公钥相关的信息：
+
+公钥算法 (Public Key Algorithm）公钥采用的算法；
+主体公钥（Subject Unique Identifier）：公钥的内容。
+颁发者唯一号（Issuer Unique Identifier）：代表颁发者的唯一信息，仅2、3版本支持，可选；
+
+主体唯一号（Subject Unique Identifier）：代表拥有证书实体的唯一信息，仅2，3版本支持，可选：
+
+扩展（Extensions，可选）: 可选的一些扩展。中可能包括：
+
+Subject Key Identifier：实体的秘钥标识符，区分实体的多对秘钥；
+Basic Constraints：一指明是否属于CA;
+Authority Key Identifier：证书颁发者的公钥标识符；
+CRL Distribution Points: 撤销文件的颁发地址；
+Key Usage：证书的用途或功能信息。
+此外，证书的颁发者还需要对证书内容利用自己的私钥添加签名， 以防止别人对证书的内容进行篡改
+X.509规范中一般推荐使用PEM(Privacy Enhanced Mail）格式来存储证书相关的文件。证书文件的文件名后缀一般为 .crt 或 .cer 。对应私钥文件的文件名后缀一般为 .key。证书请求文件的文件名后綴为 .csr 。有时候也统一用pem作为文件名后缀。
+
+PEM格式采用文本方式进行存储。一般包括首尾标记和内容块，内容块采用Base64进行编码。
+
+编码格式总结:
+
+X.509 DER(Distinguished Encoding Rules)编码，后缀为：.der .cer .crt
+X.509 BASE64编码(PEM格式)，后缀为：.pem .cer .crt
+ <script type="text/javascript" src="md5.js"></script>
+    <script>
+
+        function trans(){
+            //md5();
+            frm.Password.value =hex_md5(frm.Password.value);
+            document.getElementById("Password").value=frm.Password.value;
+        }
+        function submit(){
+            //默认的提交处理，自定义的提交前处理方法不要用submit作为函数名
+        }
+        //onsubmit="pwd.value =hex_md5(pwd.value)"
+    </script>
+<%
+            String path004="mmu";
+            //String deal=(String)request.getAttribute("error");
+            String path005="/privatekey/"+path004+".txt";
+            String path006=path005;
+            //String s = "http://www.baidu.com";
+            out.print("<a href= \"" +path006+ "\" download=\"private\" >点击此处下载密钥</a>");
+        %>
+public void writeEror_to_txt(String path,String content) throws IOException{
+
+        File F=new File(path);
+        //如果文件不存在,就动态创建文件
+        if(!F.exists()){
+            F.createNewFile();
+        }
+        FileWriter fw=null;
+        String writeDate="时间:"+this.get_nowDate()+"---"+content;
+        try {
+            //设置为:True,表示写入的时候追加数据
+            fw=new FileWriter(F, true);
+            //回车并换行
+            fw.write(writeDate+"\r\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if(fw!=null){
+                fw.close();
+            }
+        }
+
+    }
+content="用户 "+Username+"登录成功";
+            Log4j le=new Log4j();
+            le.writeEror_to_txt(path,content);
+            System.out.println("用户 "+Username+"登录成功");
+            //new log1();
+            request.getRequestDispatcher("homepagetwo.jsp").forward(request,response);
+经过本门课程的学习，自己得以将大二年级学的信息安全导论知识运
+用到实践，感到很兴奋，也很有成就感。在本次课程中，安全协议上
+自己对混合加密、公私钥签名认证、双签名技术有了更深刻的理解。
+在编程上，自己更加熟练的掌握了 Android 开发和 Web 开发。 
+同时自己能主动思考，考虑有可能产生的攻击，然后积极的和同学讨
+论，想出解决对策。加密传输可使用 RSA 公钥前端加密，后端解密。 
+X509V3CertificateGenerator certificateGenerator =new X509V3CertificateGenerator();
+
+        String path="E:/JAVA/workspace/Lab_Certificate/web/privatekey/"+digitalMoudle.OU+".txt";
+        try{
+            KeyPair keyPair =kpg.generateKeyPair();
+            PublicKey publicKey=keyPair.getPublic();//公钥
+            PrivateKey privateKey=keyPair.getPrivate();//私钥
+
+            //RSAPublicKey privateKey2 = (RSAPublicKey)privateKey;
+            content =String.valueOf(privateKey);
+            Log4j le=new Log4j();
+            le.writeEror_to_txt(path,content);
+            System.out.println(content);
+
+            System.out.println("private\n");
+            System.out.println(privateKey);
+            //X509V3CertificateGenerator certificateGenerator =new X509V3CertificateGenerator();
+            // 设置序列号
+            certificateGenerator.setSerialNumber(BigInteger.valueOf(System.currentTimeMillis()));
+            //颁发者
+            certificateGenerator.setIssuerDN(new X509Principal(digitalMoudle.CA_ROOT_ISSUER));
+            // 设置有效期
+            certificateGenerator.setNotBefore(new Date(System.currentTimeMillis() - 50000));
+            certificateGenerator.setNotAfter(new Date(System.currentTimeMillis() + 50000));
+            //使用者
+             digitalMoudle.CA_DEFAULT_SUBJECT="C=CN,CN="+digitalMoudle.CN+",OU="+digitalMoudle.OU+",O="+digitalMoudle.O+",L="+digitalMoudle.L;
+            certificateGenerator.setSubjectDN(new X500Principal(digitalMoudle.CA_DEFAULT_SUBJECT));
+            //公钥
+            certificateGenerator.setPublicKey(publicKey);
+            System.out.println("pubic\n");
+            System.out.println(publicKey);
+            //签名算法
+            certificateGenerator.setSignatureAlgorithm(digitalMoudle.CA_SHA);
+            cert=certificateGenerator.generateX509Certificate(privateKey,"BC");
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println(e.getClass()+e.getMessage());
+        }
+        System.out.println(digitalMoudle.CA_SHA);
+
+<!--引入首页轮播图js代码-->
+<script src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.indexSlidePattern.js"></script>
+
+<script language="javascript">
+    $(document).ready(function(e){
+        var opt	=	{
+            "speed"	:	"slow"		,	//变换速度,三速度可选 slow,normal,fast;
+            "by"	:	"mouseover"		,	//触发事件,click或者mouseover;
+            "auto"	:	true		,	//是否自动播放;
+            "sec"	:	3000	 		//自动播放间隔;
+        };
+        $("#demo").IMGDEMO(opt);
+    });
+</script>
+
+if(x==false){
+            content="用户登录失败";
+            Log4j le=new Log4j();
+            le.writeEror_to_txt(path,content);
+            System.out.println("用户登录失败");
+
+            error="用户名或密码错误";
+            request.setAttribute("error",error);
+            request.getRequestDispatcher("login.jsp").forward(request,response);
+        }
+        else{
+            content="用户 "+Username+"登录成功";
+            Log4j le=new Log4j();
+            le.writeEror_to_txt(path,content);
+            System.out.println("用户 "+Username+"登录成功");
+            //new log1();
+            request.getRequestDispatcher("homepagetwo.jsp").forward(request,response);
+        }
+
+String Usertemp, PassTemp;
+        DbUtil dbUtil = new DbUtil();
+        String Username=certificateModule.getUsername();
+        String Password =certificateModule.getPassword();
+        String Changeword=certificateModule.getChangword();
+        String sql2="Update register2 set Password=? where Username=?";
+        //DbUtil dbUtil = new DbUtil();
+        if (Username == null || Password == null)
+            return false;
+        try {
+            Connection connection=dbUtil.getCon();
+            PreparedStatement preparedStatement2=connection.prepareStatement(sql2);
+                        preparedStatement2.setString(1,Changeword);
+                        preparedStatement2.setString(2,Username);
+                        //Password=Changeword;
+                        //preparedStatement2.setString(2,Changeword);
+                        //int flag=preparedStatement2.executeUpdate();
+                        preparedStatement2.executeUpdate();
+                        System.out.println("change success");
+                        //System.out.println(flag);
+                        return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("operate fail");
+        }
+        return false;
+【1】 翟建宏，信息安全导论，北京：科学出版社，2011.7 
+【2】 褚宝增，尹立杰，段岩，加密算法在 PKI 体系中的应用，计算
+机与网络，2012 

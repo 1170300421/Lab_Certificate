@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="Lab_Certificate:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab_Certificate_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Lab_Certificate/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Lab_Certificate" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

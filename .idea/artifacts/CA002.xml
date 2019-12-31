@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="CA002">
+    <output-path>$PROJECT_DIR$/out/artifacts/CA002</output-path>
+    <root id="archive" name="CA002.war">
+      <element id="artifact" artifact-name="Lab_Certificate:war exploded2" />
+    </root>
+  </artifact>
+</component>
